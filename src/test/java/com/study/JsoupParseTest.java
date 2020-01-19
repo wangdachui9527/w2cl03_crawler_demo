@@ -98,4 +98,34 @@ public class JsoupParseTest {
         System.out.println("所有属性：" + attributes.toString());
 
     }
+
+    /**
+     * 使用选择器选择元素
+     * @throws IOException
+     */
+    @Test
+    public void selectTest() throws IOException {
+        Document document = Jsoup.parse(new File("C:\\Users\\admin123\\Desktop\\test.html"), "utf8");
+        //根据元素名选择元素
+//        Elements span = document.select("span");
+//        for (Element element : span) {
+//            System.out.println(element.text());
+//        }
+        //根据类名选择元素
+        Element first = document.select(".t-h-3").first();
+//        System.out.println(first.text());
+        //根据属性名选择元素
+        Elements select = document.select("[href]");
+//        for (Element element : select) {
+//            System.out.println(element.text());
+//        }
+
+        //根据属性和属性值选择元素
+        Element first1 = document.select("[class=pop-right]").first();
+        String text = first1.text();
+        String[] split = text.split(" ");
+        for (String s : split) {
+            System.out.println(s);
+        }
+    }
 }
