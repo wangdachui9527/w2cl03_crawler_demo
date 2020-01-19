@@ -2,6 +2,7 @@ package com.study;
 
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -12,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Set;
 
 /**
  * Jsoup解析测试类
@@ -73,5 +75,27 @@ public class JsoupParseTest {
         //根据属性的key和value来获取元素
         Elements href = document.getElementsByAttributeValue("href", "/view/id/171081");
         System.out.println(href.first().text());
+    }
+
+    @Test
+    public void getJsoupParseData() throws IOException {
+        Document d = Jsoup.parse(new File("C:\\Users\\admin123\\Desktop\\test.html"), "utf8");
+        //从元素中获取id
+        Element pbc1 = d.getElementById("pbc1");
+//        Elements href = pbc1.getElementsByAttributeValue("href", "/view/id/171971");
+//        System.out.println(href.first().text());
+        String id = pbc1.attr("id");
+        System.out.println("元素id：" + id);
+        //从元素中获取className
+        String s = pbc1.className();
+        System.out.println("元素类名：" + s);
+        Set<String> classNameSet = pbc1.classNames();
+        for (String s1 : classNameSet) {
+            System.out.println("元素类名：" + s1);
+        }
+        //从元素中获取所有属性
+        Attributes attributes = pbc1.attributes();
+        System.out.println("所有属性：" + attributes.toString());
+
     }
 }
