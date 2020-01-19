@@ -6,6 +6,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.junit.jupiter.api.Test;
 
+import java.awt.image.TileObserver;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -38,6 +39,17 @@ public class JsoupParseTest {
         String content = FileUtils.readFileToString(new File("C:\\Users\\admin123\\Desktop\\test.html"), "utf8");
         Document doc = Jsoup.parse(content);
         String title = doc.getElementsByTag("title").first().text();
+        System.out.println(title);
+    }
+
+    /**
+     * Jsoup解析文件数据
+     * @throws Exception
+     */
+    @Test
+    public void JsoupParseFileTest() throws Exception {
+        Document content = Jsoup.parse(new File("C:\\Users\\admin123\\Desktop\\test.html"), "utf8");
+        String title = content.getElementsByTag("title").first().text();
         System.out.println(title);
     }
 }
